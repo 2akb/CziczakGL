@@ -1,11 +1,15 @@
-#include <GL\glew.h>
-#include <GLFW\glfw3.h>
+#include "Window.h"
 
 int main()
 {
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	
+	Window window(800, 600, "Tutorial");
 
+	while (window.IsOpen())
+	{
+		glfwPollEvents();
+		glfwSwapBuffers(window.getGLFWWindow());
+	}
+	
 	return 0;
 }
