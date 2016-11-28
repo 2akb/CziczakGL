@@ -51,7 +51,7 @@ void Shader::LoadFromFile(const char * filename, ShaderType shaderType)
 	if (!success)
 	{
 		glGetShaderInfoLog(m_shaderID, 512, NULL, errBuffer);
-		std::cerr << "Failed to compile shader from file: " + std::string(filename) + " " + errBuffer;
+		std::cerr << "Failed to compile shader from file: " << filename << " "<< errBuffer;
 	}
 
 }
