@@ -14,6 +14,11 @@ ShaderProgram::~ShaderProgram()
 
 }
 
+GLuint ShaderProgram::getProgramID()
+{
+	return m_program;
+}
+
 void ShaderProgram::Init()
 {
 	m_program = glCreateProgram();

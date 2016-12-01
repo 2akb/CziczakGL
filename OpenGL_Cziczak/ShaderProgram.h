@@ -11,6 +11,8 @@ public:
 
 	~ShaderProgram();
 
+	GLuint getProgramID();
+
 private:
 
 	GLuint m_program;

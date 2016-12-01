@@ -6,7 +6,7 @@
 template <typename T>
 void glBufferDataV(GLenum target, const std::vector<T>& buffer, GLenum type)
 {
-	glBufferData(target, sizeof(T)*buffer.size(), &b[0], type);
+	glBufferData(target, sizeof(T)*buffer.size(), &buffer[0], type);
 }
 
 struct Vertex
@@ -17,7 +17,10 @@ struct Vertex
 class VAO
 {
 public:
-	VAO();
+	VAO(std::vector<Vertex> * vertexBuffer, std::vector<GLuint> * elementBuffer);
+	
+	GLuint getVAO();
+	
 	~VAO();
 
 private:
