@@ -12,6 +12,13 @@ GLuint VAO::getVAO()
 	return m_VAO;
 }
 
+void VAO::Draw()
+{
+	glBindVertexArray(m_VAO);
+	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, NULL);
+	glBindVertexArray(NULL);
+}
+
 VAO::~VAO()
 {
 	delete m_vertexBuffer;
@@ -36,9 +43,14 @@ void VAO::Init()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
 	glBufferDataV(GL_ELEMENT_ARRAY_BUFFER, *m_elementBuffer, GL_STATIC_DRAW);
 
+	//pozycja
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0);
-
 	glEnableVertexAttribArray(0);
+
+	//kolor
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)sizeof(Vertex::position));
+	glEnableVertexAttribArray(1);
+	
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	

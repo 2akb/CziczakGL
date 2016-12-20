@@ -12,6 +12,7 @@ void glBufferDataV(GLenum target, const std::vector<T>& buffer, GLenum type)
 struct Vertex
 {
 	glm::vec3 position;
+	glm::vec4 color;
 };
 
 class VAO
@@ -20,6 +21,8 @@ public:
 	VAO(std::vector<Vertex> * vertexBuffer, std::vector<GLuint> * elementBuffer);
 	
 	GLuint getVAO();
+
+	void Draw();
 	
 	~VAO();
 

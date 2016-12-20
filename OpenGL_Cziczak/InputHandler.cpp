@@ -22,4 +22,8 @@ void InputHandler::KeyInputCallback(GLFWwindow * window, int key, int scancode, 
 	{
 		glfwSetWindowShouldClose(window, true);
 	}
+	if(key == GLFW_KEY_R && state == GLFW_PRESS)
+	{
+		ShaderProgram::CurrentProgram->Refresh();
+	}
 }

@@ -4,7 +4,7 @@
 #include <sstream>
 
 Shader::Shader(const char * filename, ShaderType sType)
-	:m_shaderType(sType)
+	:m_shaderType(sType),m_filename(filename)
 {
 	LoadFromFile(filename, sType);
 }
@@ -17,6 +17,11 @@ Shader::~Shader()
 GLuint Shader::getShaderID()
 {
 	return m_shaderID;
+}
+
+void Shader::Refresh()
+{
+	LoadFromFile(m_filename.c_str(), m_shaderType);
 }
 
 void Shader::LoadFromFile(const char * filename, ShaderType shaderType)

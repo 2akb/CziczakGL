@@ -18,6 +18,8 @@ public:
 
 	GLuint getShaderID();
 
+	void Refresh();
+
 private:
 
 	void LoadFromFile(const char* filename, ShaderType shaderType);

@@ -13,6 +13,12 @@ public:
 
 	GLuint getProgramID();
 
+	void Use();
+
+	static ShaderProgram * CurrentProgram;
+
+	void Refresh();
+
 private:
 
 	GLuint m_program;
@@ -21,6 +27,6 @@ private:
 
 	std::shared_ptr<Shader> m_fragmentShader;
 
-	void Init();
+	void Init(bool mustCreate = true);
 };
 
