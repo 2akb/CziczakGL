@@ -4,7 +4,10 @@
 class Texture
 {
 public:
-	Texture();
+	Texture(const char * filename);
+
+	GLuint getTextureID();
+
 	~Texture();
 
 private:

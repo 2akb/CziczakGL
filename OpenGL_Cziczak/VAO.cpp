@@ -44,11 +44,11 @@ void VAO::Init()
 	glBufferDataV(GL_ELEMENT_ARRAY_BUFFER, *m_elementBuffer, GL_STATIC_DRAW);
 
 	//pozycja
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
 	glEnableVertexAttribArray(0);
 
 	//kolor
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)sizeof(Vertex::position));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex,textureCoord));
 	glEnableVertexAttribArray(1);
 	
 

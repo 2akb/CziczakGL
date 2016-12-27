@@ -12,7 +12,7 @@ void glBufferDataV(GLenum target, const std::vector<T>& buffer, GLenum type)
 struct Vertex
 {
 	glm::vec3 position;
-	glm::vec4 color;
+	glm::vec2 textureCoord;
 };
 
 class VAO

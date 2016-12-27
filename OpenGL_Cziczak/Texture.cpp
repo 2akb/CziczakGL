@@ -2,10 +2,15 @@
 #include "FreeImage.h"
 #include <iostream>
 
-Texture::Texture()
+Texture::Texture(const char * filename)
 {
+	Load(filename);
 }
 
+GLuint Texture::getTextureID()
+{
+	return m_texture;
+}
 
 Texture::~Texture()
 {
@@ -35,12 +40,15 @@ bool Texture::Load(const char* filename)
 	if(error!=0)
 	{
 		std::cerr << "Error creating texture";
+		return false;
 	}
 
 	FreeImage_Unload(bitmap);
 	FreeImage_Unload(data);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	FreeImage_DeInitialise();
 
 	return true;
 
