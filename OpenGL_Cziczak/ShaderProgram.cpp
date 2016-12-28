@@ -26,6 +26,12 @@ void ShaderProgram::Use()
 	CurrentProgram = this;
 }
 
+void ShaderProgram::setColor(glm::vec4 color)
+{
+	GLuint location = glGetUniformLocation(m_program, "uniformColor");
+	glUniform4fv(location, 1, (GLfloat*)&color);
+}
+
 void ShaderProgram::Refresh()
 {
 	m_fragmentShader->Refresh();
@@ -51,4 +57,8 @@ void ShaderProgram::Init(bool mustCreate)
 		glGetProgramInfoLog(m_program, 512, NULL, errBuffer);
 		std::cerr << "Failed to link shader program. " << errBuffer;
 	}
+	glUseProgram(m_program);
+	glUniform1i(glGetUniformLocation(m_program, "ourTexture"), 0);
+	glUniform1i(glGetUniformLocation(m_program, "ourTexture1"), 1);
+	glUseProgram(0);
 }

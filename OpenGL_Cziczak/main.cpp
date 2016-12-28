@@ -3,6 +3,9 @@
 #include "ShaderProgram.h"
 #include "glm-0.9.8.2\glm\glm\glm.hpp"
 #include "Texture.h"
+#include <gtc/matrix_transform.hpp>
+#include <gtc/type_ptr.hpp>
+
 int main()
 {
 	
@@ -26,6 +29,9 @@ int main()
 	Texture texture("textures/texture1.png");
 	Texture texture1("textures/texture1.jpg");
 
+	glm::mat4 transform;
+	transform = glm::rotate(transform, 3.14f, glm::vec3(0.0f, 0.0f, 1.0f));
+
 	while (window.IsOpen())
 	{
 		glfwPollEvents();
@@ -34,16 +40,13 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//draw here
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture.getTextureID());
-
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, texture1.getTextureID());
-
-		glUniform1i(glGetUniformLocation(program.getProgramID(), "ourTexture"), 0);
-		glUniform1i(glGetUniformLocation(program.getProgramID(), "ourTexture1"), 1);
+		texture.Use(0);
+		texture1.Use(1);
 
 		program.Use();
+
+		glUniformMatrix4fv(glGetUniformLocation(program.getProgramID(), "transform"), 1, GL_FALSE, glm::value_ptr(transform));
+		program.setColor(glm::vec4(1.0f, 0.5f, 0.5f, 1.0f));
 		vao.Draw();
 
 		//

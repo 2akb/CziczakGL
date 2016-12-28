@@ -8,6 +8,8 @@ public:
 
 	GLuint getTextureID();
 
+	void Use(int id);
+	
 	~Texture();
 
 private:

@@ -12,6 +12,12 @@ GLuint Texture::getTextureID()
 	return m_texture;
 }
 
+void Texture::Use(int id)
+{
+	glActiveTexture(GL_TEXTURE0+id);
+	glBindTexture(GL_TEXTURE_2D, m_texture);
+}
+
 Texture::~Texture()
 {
 }

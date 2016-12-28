@@ -2,6 +2,7 @@
 #include <GL\glew.h>
 #include "Shader.h"
 #include <memory>
+#include <detail/type_vec4.hpp>
 
 class ShaderProgram
 {
@@ -14,6 +15,8 @@ public:
 	GLuint getProgramID();
 
 	void Use();
+
+	void setColor(glm::vec4 color);
 
 	static ShaderProgram * CurrentProgram;
 
