@@ -13,18 +13,19 @@ struct Vertex
 {
 	glm::vec3 position;
 	glm::vec2 textureCoord;
+	glm::vec3 normal;
 };
 
-class VAO
+class Mesh
 {
 public:
-	VAO(std::vector<Vertex> * vertexBuffer, std::vector<GLuint> * elementBuffer);
+	Mesh(std::vector<Vertex>& vertexBuffer, std::vector<GLuint>& elementBuffer);
 	
 	GLuint getVAO();
 
 	void Draw();
 	
-	~VAO();
+	~Mesh();
 
 private:
 
@@ -32,9 +33,9 @@ private:
 	GLuint m_VBO;
 	GLuint m_EBO;
 
-	std::vector<Vertex> * m_vertexBuffer;
+	std::vector<Vertex> m_vertexBuffer;
 
-	std::vector<GLuint> * m_elementBuffer;
+	std::vector<GLuint> m_elementBuffer;
 
 	void Init();
 };

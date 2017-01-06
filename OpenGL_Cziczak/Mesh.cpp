@@ -1,34 +1,32 @@
-#include "VAO.h"
+#include "Mesh.h"
 
 
-VAO::VAO(std::vector<Vertex>* vertexBuffer, std::vector<GLuint>* elementBuffer)
+Mesh::Mesh(std::vector<Vertex>& vertexBuffer, std::vector<GLuint>& elementBuffer)
 	:m_vertexBuffer(vertexBuffer),m_elementBuffer(elementBuffer)
 {
 	Init();
 }
 
-GLuint VAO::getVAO()
+GLuint Mesh::getVAO()
 {
 	return m_VAO;
 }
 
-void VAO::Draw()
+void Mesh::Draw()
 {
 	glBindVertexArray(m_VAO);
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, NULL);
 	glBindVertexArray(NULL);
 }
 
-VAO::~VAO()
+Mesh::~Mesh()
 {
-	delete m_vertexBuffer;
-	delete m_elementBuffer;
 	glDeleteBuffers(1, &m_VBO);
 	glDeleteBuffers(1, &m_EBO);
 	glDeleteVertexArrays(1, &m_VAO);
 }
 
-void VAO::Init()
+void Mesh::Init()
 {
 	glGenVertexArrays(1, &m_VAO);
 	glGenBuffers(1, &m_VBO);
@@ -37,11 +35,11 @@ void VAO::Init()
 	glBindVertexArray(m_VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-	glBufferDataV(GL_ARRAY_BUFFER, *m_vertexBuffer, GL_STATIC_DRAW);
+	glBufferDataV(GL_ARRAY_BUFFER, m_vertexBuffer, GL_STATIC_DRAW);
 
 	//
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
-	glBufferDataV(GL_ELEMENT_ARRAY_BUFFER, *m_elementBuffer, GL_STATIC_DRAW);
+	glBufferDataV(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer, GL_STATIC_DRAW);
 
 	//pozycja
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));

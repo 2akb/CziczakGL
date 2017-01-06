@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\FreeImage;$(ProjectDir)\glm-0.9.8.2\glm\glm;$(ProjectDir)\glfw-3.2.1.bin.WIN32\glfw-3.2.1.bin.WIN32\include;$(ProjectDir)\glew-2.0.0-win32\glew-2.0.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\FreeImage;$(ProjectDir)\glfw-3.2.1.bin.WIN32\glfw-3.2.1.bin.WIN32\lib-vc2015;$(ProjectDir)\glew-2.0.0-win32\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)assimp\include;$(ProjectDir)FreeImage;$(ProjectDir)glm-0.9.8.2\glm\glm;$(ProjectDir)glfw-3.2.1.bin.WIN32\glfw-3.2.1.bin.WIN32\include;$(ProjectDir)glew-2.0.0-win32\glew-2.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\assimp\lib32;$(ProjectDir)\FreeImage;$(ProjectDir)\glfw-3.2.1.bin.WIN32\glfw-3.2.1.bin.WIN32\lib-vc2015;$(ProjectDir)\glew-2.0.0-win32\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -95,7 +95,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;zlibstatic.lib;opengl32.lib;glew32.lib;glfw3dll.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,18 +151,20 @@
   <ItemGroup>
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="VAO.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="VAO.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
