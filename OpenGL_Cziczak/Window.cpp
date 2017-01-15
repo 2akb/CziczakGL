@@ -53,6 +53,8 @@ bool Window::Init(int x, int y, char* name)
 	int frameX, frameY;
 	glfwGetFramebufferSize(m_window, &frameX, &frameY);
 
+	glEnable(GL_DEPTH_TEST);
+
 	glViewport(0, 0, frameX, frameY);
 	return true;
 }

@@ -21,18 +21,19 @@ int main()
 	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 
 	glm::mat4 view, projection,model;
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -100.0f));
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -300.0f));
+	view = glm::rotate(view, glm::radians(45.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 	projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 1000.0f);
 
 	while (window.IsOpen())
 	{
 		glfwPollEvents();
-		glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//draw here
 		program.Use();
 		box.Draw();
-		GLuint error = glGetError();
+		program.setColor(glm::vec4(0.0f, 0.5f, 1.0f, 1.0f));
 		glUniformMatrix4fv(glGetUniformLocation(program.getProgramID(), "model"), 1, GL_FALSE, glm::value_ptr(model));
 		glUniformMatrix4fv(glGetUniformLocation(program.getProgramID(), "view"), 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(glGetUniformLocation(program.getProgramID(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));

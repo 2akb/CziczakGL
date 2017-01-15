@@ -15,7 +15,7 @@ GLuint Mesh::getVAO()
 void Mesh::Draw()
 {
 	glBindVertexArray(m_VAO);
-	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, NULL);
+	glDrawElements(GL_TRIANGLES, m_vertexBuffer.size(), GL_UNSIGNED_INT, NULL);
 	glBindVertexArray(NULL);
 }
 
