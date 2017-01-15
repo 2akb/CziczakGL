@@ -7,7 +7,9 @@
 class Model
 {
 public:
-	Model();
+	Model(char* filename);
+
+	void Draw();
 
 	~Model();
 

@@ -2,10 +2,19 @@
 #include <assimp/postprocess.h>
 #include <iostream>
 
-Model::Model()
+
+Model::Model(char* filename)
 {
+	loadModel(std::string(filename));
 }
 
+void Model::Draw()
+{
+	for(auto mesh : m_meshes)
+	{
+		mesh->Draw();
+	}
+}
 
 Model::~Model()
 {
@@ -72,5 +81,17 @@ Mesh* Model::processMesh(aiMesh* mesh, const aiScene* scene)
 		{
 			newVertex.textureCoord = glm::vec2(0.0f, 0.0f);
 		}
+		vertices.push_back(newVertex);
 	}
+
+	for(GLuint i=0;i<mesh->mNumFaces;i++)
+	{
+		aiFace face = mesh->mFaces[i];
+		for(int j=0;j<face.mNumIndices;j++)
+		{
+			indices.push_back(face.mIndices[j]);
+		}
+	}
+
+	return new Mesh(vertices, indices);
 }
